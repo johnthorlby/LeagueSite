@@ -1,0 +1,3 @@
+module.exports = {
+  key: "RGAPI-A36F5592-A90C-4AA5-ADFF-CCD834774F93"
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <header id="header">
+        <img src="Resource/tempLogo.jpg" alt="Logo" id="logo">
+      <div style="" id="search">
+        <form method='get' action='/summoner'>
+        <div class="row">
+          <div class="col-xs-6">
+            <input type="text" class="form-control" placeholder="Summoner Name..." style="height: 50px" id="summ" name="summ">
+          </div>
+          <div class="col-xs-2">
+            <select style="height: 50px" id="reg" name="reg">
+              <option value="br">BR</option>
+              <option value="eune">EUNE</option>
+              <option value="euw" selected>EUW</option>
+              <option value="jp">JP</option>
+              <option value="kr">KR</option>
+              <option value="lan">LAN</option>
+              <option value="las">LAS</option>
+              <option value="na">NA</option>
+              <option value="oce">OCE</option>
+              <option value="ru">RU</option>
+              <option value="tr">TR</option>
+            </select>
+          </div>
+          <div class="col-xs-4">
+            <button type="submit" id="summBtn" class="form-control">Search Summoner</button>
+            <button type="submit" id="gameBtn" class="form-control">Search Current Game</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav id="nav">
+      <ul>
+        <li><a href="/">Home</a></li>
+      </ul>
+    </nav>
+
+    <div id="main"  style="background-image: url('<%= bg %> '); width:100%; background-size: 100%;background-repeat: repeat-y;">
+      <div id="content">
+        <div id="summary">
+          <div id="topstuff">
+            <img src= "<%= icon %>" alt="icon" id="icon">
+            <h1 style="margin: 10px;"><%= summ %></h1>
+            <h2 style="margin: 10px;"><%= level %></h2>
+          </div>
+          <hr id="rhr">
+          <div id="ranks">
+            <div id="solo">
+              <h3>Ranked Solo Queue</h3>
+              <hr id="rhr">
+              <img src= "<%= simg %>" alt="rank" id="rank">
+              <h2> <%= srank %> </h2>
+              <h3> Wins: <%= swins %> Losses: <%= sloss %> </h3>
+              <h3> <%= slp %> </h3>
+              <% if(ss != "") { %>
+                <h3> <%- ss  %></h3>
+              <% } %>
+            </div>
+            <div id="flex">
+              <h3>Ranked Flex</h3>
+              <hr id="rhr">
+              <img src="<%= fimg %>" alt="rank" id="rank">
+              <h2> <%= frank %> </h2>
+              <h3> Wins: <%= fwins %> Losses: <%= floss %> </h3>
+              <h3> <%= flp %> </h3>
+              <% if(fs != "") { %>
+                <h3> <%- fs  %></h3>
+              <% } %>
+            </div>
+          </div>
+          <div id="matches">
+            <%- games %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+  <script>
+    var biggestHeight = 0;
+    $("#main *").each(function(){
+     if ($(this).height() > biggestHeight ) {
+       biggestHeight = $(this).height();
+     }
+    });
+    $("#main").height(biggestHeight+450);
+  </script>
+</html>
